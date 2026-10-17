@@ -1,3 +1,4 @@
+import { BarChart3, Code, FlaskConical, Terminal, LineChart, Database, Globe, Wrench } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
@@ -15,8 +16,8 @@ const btnOutline = `${btn} border border-line bg-paper text-ink hover:border-bra
 const card = "card-accent relative h-full overflow-hidden rounded-2xl border border-line bg-paper transition duration-300 hover:-translate-y-1 hover:shadow-xl";
 const tag = "rounded-full bg-chip px-3 py-1 text-xs font-semibold text-ink";
 const icon = "gradient-bg mb-4 grid h-11 w-11 place-items-center rounded-xl text-xl shadow-md";
-const hlIcons = ["📊", "💻", "🛠️"];
-const skillIcons = ["🐍", "📈", "🗄️", "🌐", "🧰"];
+const hlIcons = [<BarChart3 size={22} />, <Code size={22} />, <FlaskConical size={22} />];
+const skillIcons = [<Terminal size={22} />, <LineChart size={22} />, <Database size={22} />, <Globe size={22} />, <Wrench size={22} />];
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -79,7 +80,7 @@ export default function Home() {
             </div>
             <Reveal delay={200}>
               <div className="float relative mx-auto w-64 sm:w-72 lg:w-full lg:max-w-sm">
-                <div className="gradient-bg absolute inset-0 rounded-full opacity-40 blur-3xl" aria-hidden />
+                <div className="gradient-bg absolute inset-0 rounded-full opacity-20 blur-3xl" aria-hidden />
                 <div className="gradient-bg relative rounded-full p-1.5 shadow-2xl">
                   <div className="rounded-full bg-paper p-1.5">
                     <Image src="/haroon.webp" alt="Portrait of Haroon Khurram" width={720} height={720} priority sizes="(min-width: 1024px) 384px, 288px" className="aspect-square w-full rounded-full object-cover" />

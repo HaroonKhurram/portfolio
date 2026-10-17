@@ -1,36 +1,44 @@
 @import "tailwindcss";
 
 /* ---------- Design tokens: change the look of the whole site here ---------- */
+/* Palette: Deep Navy #2C3E50 + Slate Blue #34495E + Soft Silver (stable, corporate) */
 :root {
-  --paper: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;
-  --line: #e2e8f0;
-  --surface: #f8fafc;
-  --chip: #f1f5f9;
-  --dot: #cbd5e1;
-  --accent: #6d28d9;
-  --glow: 0.22;
+  --paper: #f4f6f8;
+  --ink: #2c3e50;
+  --muted: #5d6d7e;
+  --line: #d5dbe0;
+  --surface: #ffffff;
+  --chip: #e6eaed;
+  --dot: #bdc3c7;
+  --accent: #34495e;          /* accent for text/links */
+  --accent-fill: #2c3e50;       /* accent for buttons, badges, highlights */
+  --on-accent: #ffffff;           /* text placed on top of the accent fill */
+  --accent-rgb: 44 62 80;
+  --glow: 0.08;
 }
 .dark {
-  --paper: #0a0f1f;
-  --ink: #e8ecf5;
-  --muted: #9aa6bd;
-  --line: #1e2a47;
-  --surface: #0e1530;
-  --chip: #172143;
-  --dot: #24305a;
-  --accent: #a78bfa;
-  --glow: 0.38;
+  --paper: #1b2733;
+  --ink: #ecf0f1;
+  --muted: #9aa7b3;
+  --line: #2f4152;
+  --surface: #223140;
+  --chip: #2a3b4c;
+  --dot: #3a4d5f;
+  --accent: #bdc3c7;
+  --accent-fill: #bdc3c7;
+  --on-accent: #1b2733;
+  --accent-rgb: 189 195 199;
+  --glow: 0.10;
   color-scheme: dark;
 }
 
 @theme {
-  --color-brand-blue: #3b82f6;
-  --color-brand-purple: #8b5cf6;
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @theme inline {
+  /* Old brand-blue / brand-purple names kept so existing components keep working. */
+  --color-brand-blue: var(--accent-fill);
+  --color-brand-purple: var(--accent-fill);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
@@ -43,17 +51,14 @@
 html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; transition: background-color .3s, color .3s; }
 
-.gradient-text {
-  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-purple));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.gradient-bg { background: linear-gradient(135deg, var(--color-brand-blue), var(--color-brand-purple)); }
+/* Flat accent instead of a gradient (cleaner, more professional) */
+.gradient-text { color: var(--accent); }
+.gradient-bg { background: var(--accent-fill); color: var(--on-accent); }
 
-/* Backgrounds */
+/* Backgrounds: a single soft glow, no multi-colour blobs */
 .hero-bg {
   background:
-    radial-gradient(55% 55% at 88% 15%, rgb(139 92 246 / var(--glow)), transparent 70%),
-    radial-gradient(50% 50% at 8% 85%, rgb(59 130 246 / var(--glow)), transparent 70%);
+    radial-gradient(50% 50% at 88% 10%, rgb(var(--accent-rgb) / var(--glow)), transparent 70%);
 }
 .dot-grid {
   background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px);
@@ -61,12 +66,12 @@ body { background: var(--paper); color: var(--ink); font-family: var(--font-sans
   mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
 }
-.glow-bg { background: radial-gradient(45% 60% at 100% 0%, rgb(139 92 246 / calc(var(--glow) * .6)), transparent 70%); }
+.glow-bg { background: radial-gradient(45% 60% at 100% 0%, rgb(var(--accent-rgb) / calc(var(--glow) * .6)), transparent 70%); }
 
-/* Cards: gradient top border (always on, or on hover) */
+/* Cards: thin accent top border (always on, or on hover) */
 .card-accent::before {
   content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; opacity: 0; transition: opacity .3s;
-  background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-purple));
+  background: var(--accent-fill);
 }
 .card-accent:hover::before, .card-accent.always::before { opacity: 1; }
 
@@ -76,7 +81,7 @@ body { background: var(--paper); color: var(--ink); font-family: var(--font-sans
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .float { animation: float 6s ease-in-out infinite; }
 
-:focus-visible { outline: 2px solid var(--color-brand-purple); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

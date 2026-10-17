@@ -309,7 +309,7 @@ export default function Chatbot() {
             </div>
             <div><p className="font-bold">Ask about Haroon</p><p className="text-xs opacity-90">Answers come from his portfolio</p></div>
             <div className="flex items-center gap-1">
-              <button type="button" onClick={toggleBig} aria-label={big ? "Shrink chat" : "Expand chat"} className="grid h-8 w-8 place-items-center rounded-lg hover:bg-white/20">
+              <button type="button" onClick={toggleBig} aria-label={big ? "Shrink chat" : "Expand chat"} className="grid h-8 w-8 place-items-center rounded-lg hover:bg-black/10">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d={big ? "M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" : "M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"} /></svg>
               </button>
               <button type="button" onClick={() => setOpen(false)} aria-label="Close chat" className="rounded-lg px-2 py-1 text-lg hover:bg-white/20">✕</button>
@@ -346,7 +346,11 @@ export default function Chatbot() {
         </div>
       )}
       <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-label={open ? "Close chat" : "Open chat about Haroon"} className="gradient-bg fixed right-5 bottom-5 z-50 grid h-14 w-14 place-items-center rounded-full text-2xl text-white shadow-xl transition hover:-translate-y-1">
-        <span aria-hidden>{open ? "✕" : "💬"}</span>
+        <span aria-hidden>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d={open ? "M18 6L6 18M6 6l12 12" : "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"} />
+  </svg>
+</span>
       </button>
     </>
   );
