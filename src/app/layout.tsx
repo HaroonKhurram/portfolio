@@ -3,6 +3,7 @@ import "@fontsource-variable/manrope";
 import "./globals.css";
 import { profile } from "@/data/content";
 import { siteUrl } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const title = `${profile.name} | Data Science Portfolio`;
 
@@ -27,7 +28,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <noscript><style>{`.reveal{opacity:1!important;transform:none!important}`}</style></noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
